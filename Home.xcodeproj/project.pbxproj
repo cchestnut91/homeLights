@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3E67B38C1B3CE3A00009EE68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E67B38B1B3CE3A00009EE68 /* main.m */; };
 		3E67B38F1B3CE3A00009EE68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E67B38E1B3CE3A00009EE68 /* AppDelegate.m */; };
-		3E67B3921B3CE3A00009EE68 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E67B3911B3CE3A00009EE68 /* ViewController.m */; };
 		3E67B3951B3CE3A00009EE68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E67B3931B3CE3A00009EE68 /* Main.storyboard */; };
 		3E67B3971B3CE3A00009EE68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E67B3961B3CE3A00009EE68 /* Assets.xcassets */; };
 		3E67B39A1B3CE3A00009EE68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E67B3981B3CE3A00009EE68 /* LaunchScreen.storyboard */; };
@@ -18,6 +17,19 @@
 		3E67B3C21B3CE5140009EE68 /* BaseStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E67B3C11B3CE5140009EE68 /* BaseStation.m */; };
 		3E67B3C51B3CE7F10009EE68 /* Light.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E67B3C41B3CE7F10009EE68 /* Light.m */; };
 		3E67B3C81B3CEA540009EE68 /* URLRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E67B3C71B3CEA540009EE68 /* URLRequestManager.m */; };
+		3E76720F1B3D74500028CA3A /* SwitchControlTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76720E1B3D74500028CA3A /* SwitchControlTableViewController.m */; };
+		3E7672121B3D76B20028CA3A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7672111B3D76B20028CA3A /* RootViewController.m */; };
+		3E7672151B3D77250028CA3A /* ColorSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7672141B3D77250028CA3A /* ColorSelectorViewController.m */; };
+		3EF244601B4060C600EDAFEE /* SwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF2445F1B4060C600EDAFEE /* SwitchTableViewCell.m */; };
+		3EF244681B4091BD00EDAFEE /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF244671B4091BD00EDAFEE /* NotificationCenter.framework */; };
+		3EF2446C1B4091BD00EDAFEE /* QuickSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF2446B1B4091BD00EDAFEE /* QuickSwitchViewController.m */; };
+		3EF2446F1B4091BD00EDAFEE /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EF2446D1B4091BD00EDAFEE /* MainInterface.storyboard */; };
+		3EF244731B4091BD00EDAFEE /* Quick Home.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3EF244651B4091BD00EDAFEE /* Quick Home.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3EF244781B4091D400EDAFEE /* BaseStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E67B3C11B3CE5140009EE68 /* BaseStation.m */; };
+		3EF244791B4091D800EDAFEE /* Light.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E67B3C41B3CE7F10009EE68 /* Light.m */; };
+		3EF2447A1B4091DA00EDAFEE /* URLRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E67B3C71B3CEA540009EE68 /* URLRequestManager.m */; };
+		3EF2447C1B40A2C600EDAFEE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EF2447B1B40A2C600EDAFEE /* Images.xcassets */; };
+		3EF6D76F1B3ED386008BF129 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF6D76E1B3ED386008BF129 /* NKOColorPickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,15 +47,34 @@
 			remoteGlobalIDString = 3E67B3861B3CE3A00009EE68;
 			remoteInfo = Home;
 		};
+		3EF244711B4091BD00EDAFEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E67B37F1B3CE3A00009EE68 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3EF244641B4091BD00EDAFEE;
+			remoteInfo = "Quick Home";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3EF244771B4091BD00EDAFEE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3EF244731B4091BD00EDAFEE /* Quick Home.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3E67B3871B3CE3A00009EE68 /* Home.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Home.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E67B38B1B3CE3A00009EE68 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E67B38D1B3CE3A00009EE68 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3E67B38E1B3CE3A00009EE68 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3E67B3901B3CE3A00009EE68 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		3E67B3911B3CE3A00009EE68 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		3E67B3941B3CE3A00009EE68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3E67B3961B3CE3A00009EE68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E67B3991B3CE3A00009EE68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,6 +91,23 @@
 		3E67B3C41B3CE7F10009EE68 /* Light.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Light.m; sourceTree = "<group>"; };
 		3E67B3C61B3CEA540009EE68 /* URLRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLRequestManager.h; sourceTree = "<group>"; };
 		3E67B3C71B3CEA540009EE68 /* URLRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLRequestManager.m; sourceTree = "<group>"; };
+		3E76720D1B3D74500028CA3A /* SwitchControlTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchControlTableViewController.h; sourceTree = "<group>"; };
+		3E76720E1B3D74500028CA3A /* SwitchControlTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchControlTableViewController.m; sourceTree = "<group>"; };
+		3E7672101B3D76B20028CA3A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		3E7672111B3D76B20028CA3A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		3E7672131B3D77250028CA3A /* ColorSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorSelectorViewController.h; sourceTree = "<group>"; };
+		3E7672141B3D77250028CA3A /* ColorSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorSelectorViewController.m; sourceTree = "<group>"; };
+		3EF2445E1B4060C600EDAFEE /* SwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchTableViewCell.h; sourceTree = "<group>"; };
+		3EF2445F1B4060C600EDAFEE /* SwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchTableViewCell.m; sourceTree = "<group>"; };
+		3EF244651B4091BD00EDAFEE /* Quick Home.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Quick Home.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EF244671B4091BD00EDAFEE /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		3EF2446A1B4091BD00EDAFEE /* QuickSwitchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickSwitchViewController.h; sourceTree = "<group>"; };
+		3EF2446B1B4091BD00EDAFEE /* QuickSwitchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickSwitchViewController.m; sourceTree = "<group>"; };
+		3EF2446E1B4091BD00EDAFEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		3EF244701B4091BD00EDAFEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EF2447B1B40A2C600EDAFEE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3EF6D76D1B3ED386008BF129 /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKOColorPickerView.h; sourceTree = "<group>"; };
+		3EF6D76E1B3ED386008BF129 /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKOColorPickerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +132,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3EF244621B4091BD00EDAFEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF244681B4091BD00EDAFEE /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -92,8 +148,10 @@
 			children = (
 				3E67B3BF1B3CE4550009EE68 /* Common Core */,
 				3E67B3891B3CE3A00009EE68 /* Home */,
+				3EF244691B4091BD00EDAFEE /* Quick Home */,
 				3E67B3A31B3CE3A00009EE68 /* HomeTests */,
 				3E67B3AE1B3CE3A00009EE68 /* HomeUITests */,
+				3EF244661B4091BD00EDAFEE /* Frameworks */,
 				3E67B3881B3CE3A00009EE68 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -104,6 +162,7 @@
 				3E67B3871B3CE3A00009EE68 /* Home.app */,
 				3E67B3A01B3CE3A00009EE68 /* HomeTests.xctest */,
 				3E67B3AB1B3CE3A00009EE68 /* HomeUITests.xctest */,
+				3EF244651B4091BD00EDAFEE /* Quick Home.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,10 +172,9 @@
 			children = (
 				3E67B3BE1B3CE4410009EE68 /* iOS Core */,
 				3E67B3BD1B3CE4360009EE68 /* ViewControllers */,
-				3E67B3931B3CE3A00009EE68 /* Main.storyboard */,
+				3EF6D7701B3ED392008BF129 /* Widgets */,
+				3EF6D7711B3ED3C1008BF129 /* Storyboards */,
 				3E67B3961B3CE3A00009EE68 /* Assets.xcassets */,
-				3E67B3981B3CE3A00009EE68 /* LaunchScreen.storyboard */,
-				3E67B39B1B3CE3A00009EE68 /* Info.plist */,
 				3E67B38A1B3CE3A00009EE68 /* Supporting Files */,
 			);
 			path = Home;
@@ -125,6 +183,7 @@
 		3E67B38A1B3CE3A00009EE68 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3E67B39B1B3CE3A00009EE68 /* Info.plist */,
 				3E67B38B1B3CE3A00009EE68 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -151,8 +210,12 @@
 		3E67B3BD1B3CE4360009EE68 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3E67B3901B3CE3A00009EE68 /* ViewController.h */,
-				3E67B3911B3CE3A00009EE68 /* ViewController.m */,
+				3E76720D1B3D74500028CA3A /* SwitchControlTableViewController.h */,
+				3E76720E1B3D74500028CA3A /* SwitchControlTableViewController.m */,
+				3E7672101B3D76B20028CA3A /* RootViewController.h */,
+				3E7672111B3D76B20028CA3A /* RootViewController.m */,
+				3E7672131B3D77250028CA3A /* ColorSelectorViewController.h */,
+				3E7672141B3D77250028CA3A /* ColorSelectorViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -180,6 +243,46 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		3EF244661B4091BD00EDAFEE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3EF244671B4091BD00EDAFEE /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3EF244691B4091BD00EDAFEE /* Quick Home */ = {
+			isa = PBXGroup;
+			children = (
+				3EF2446A1B4091BD00EDAFEE /* QuickSwitchViewController.h */,
+				3EF2446B1B4091BD00EDAFEE /* QuickSwitchViewController.m */,
+				3EF2446D1B4091BD00EDAFEE /* MainInterface.storyboard */,
+				3EF2447B1B40A2C600EDAFEE /* Images.xcassets */,
+				3EF244701B4091BD00EDAFEE /* Info.plist */,
+			);
+			path = "Quick Home";
+			sourceTree = "<group>";
+		};
+		3EF6D7701B3ED392008BF129 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				3EF6D76D1B3ED386008BF129 /* NKOColorPickerView.h */,
+				3EF6D76E1B3ED386008BF129 /* NKOColorPickerView.m */,
+				3EF2445E1B4060C600EDAFEE /* SwitchTableViewCell.h */,
+				3EF2445F1B4060C600EDAFEE /* SwitchTableViewCell.m */,
+			);
+			name = Widgets;
+			sourceTree = "<group>";
+		};
+		3EF6D7711B3ED3C1008BF129 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				3E67B3931B3CE3A00009EE68 /* Main.storyboard */,
+				3E67B3981B3CE3A00009EE68 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,10 +293,12 @@
 				3E67B3831B3CE3A00009EE68 /* Sources */,
 				3E67B3841B3CE3A00009EE68 /* Frameworks */,
 				3E67B3851B3CE3A00009EE68 /* Resources */,
+				3EF244771B4091BD00EDAFEE /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3EF244721B4091BD00EDAFEE /* PBXTargetDependency */,
 			);
 			name = Home;
 			productName = Home;
@@ -236,6 +341,23 @@
 			productReference = 3E67B3AB1B3CE3A00009EE68 /* HomeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		3EF244641B4091BD00EDAFEE /* Quick Home */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EF244741B4091BD00EDAFEE /* Build configuration list for PBXNativeTarget "Quick Home" */;
+			buildPhases = (
+				3EF244611B4091BD00EDAFEE /* Sources */,
+				3EF244621B4091BD00EDAFEE /* Frameworks */,
+				3EF244631B4091BD00EDAFEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Quick Home";
+			productName = "Quick Home";
+			productReference = 3EF244651B4091BD00EDAFEE /* Quick Home.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -256,6 +378,9 @@
 						CreatedOnToolsVersion = 7.0;
 						TestTargetID = 3E67B3861B3CE3A00009EE68;
 					};
+					3EF244641B4091BD00EDAFEE = {
+						CreatedOnToolsVersion = 7.0;
+					};
 				};
 			};
 			buildConfigurationList = 3E67B3821B3CE3A00009EE68 /* Build configuration list for PBXProject "Home" */;
@@ -274,6 +399,7 @@
 				3E67B3861B3CE3A00009EE68 /* Home */,
 				3E67B39F1B3CE3A00009EE68 /* HomeTests */,
 				3E67B3AA1B3CE3A00009EE68 /* HomeUITests */,
+				3EF244641B4091BD00EDAFEE /* Quick Home */,
 			);
 		};
 /* End PBXProject section */
@@ -303,6 +429,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3EF244631B4091BD00EDAFEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF2446F1B4091BD00EDAFEE /* MainInterface.storyboard in Resources */,
+				3EF2447C1B40A2C600EDAFEE /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -310,12 +445,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E67B3921B3CE3A00009EE68 /* ViewController.m in Sources */,
 				3E67B3C51B3CE7F10009EE68 /* Light.m in Sources */,
+				3E7672121B3D76B20028CA3A /* RootViewController.m in Sources */,
+				3E76720F1B3D74500028CA3A /* SwitchControlTableViewController.m in Sources */,
 				3E67B3C21B3CE5140009EE68 /* BaseStation.m in Sources */,
+				3EF6D76F1B3ED386008BF129 /* NKOColorPickerView.m in Sources */,
+				3EF244601B4060C600EDAFEE /* SwitchTableViewCell.m in Sources */,
 				3E67B3C81B3CEA540009EE68 /* URLRequestManager.m in Sources */,
 				3E67B38F1B3CE3A00009EE68 /* AppDelegate.m in Sources */,
 				3E67B38C1B3CE3A00009EE68 /* main.m in Sources */,
+				3E7672151B3D77250028CA3A /* ColorSelectorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +474,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3EF244611B4091BD00EDAFEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF244791B4091D800EDAFEE /* Light.m in Sources */,
+				3EF2447A1B4091DA00EDAFEE /* URLRequestManager.m in Sources */,
+				3EF2446C1B4091BD00EDAFEE /* QuickSwitchViewController.m in Sources */,
+				3EF244781B4091D400EDAFEE /* BaseStation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -347,6 +497,11 @@
 			isa = PBXTargetDependency;
 			target = 3E67B3861B3CE3A00009EE68 /* Home */;
 			targetProxy = 3E67B3AC1B3CE3A00009EE68 /* PBXContainerItemProxy */;
+		};
+		3EF244721B4091BD00EDAFEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3EF244641B4091BD00EDAFEE /* Quick Home */;
+			targetProxy = 3EF244711B4091BD00EDAFEE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -365,6 +520,14 @@
 				3E67B3991B3CE3A00009EE68 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		3EF2446D1B4091BD00EDAFEE /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EF2446E1B4091BD00EDAFEE /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -460,6 +623,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.calvinchestnut.Home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -471,6 +635,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.calvinchestnut.Home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -522,6 +687,28 @@
 			};
 			name = Release;
 		};
+		3EF244751B4091BD00EDAFEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Quick Home/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.calvinchestnut.Home.Quick-Home";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3EF244761B4091BD00EDAFEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Quick Home/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.calvinchestnut.Home.Quick-Home";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -541,6 +728,7 @@
 				3E67B3B61B3CE3A00009EE68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3E67B3B71B3CE3A00009EE68 /* Build configuration list for PBXNativeTarget "HomeTests" */ = {
 			isa = XCConfigurationList;
@@ -549,6 +737,7 @@
 				3E67B3B91B3CE3A00009EE68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3E67B3BA1B3CE3A00009EE68 /* Build configuration list for PBXNativeTarget "HomeUITests" */ = {
 			isa = XCConfigurationList;
@@ -557,6 +746,16 @@
 				3E67B3BC1B3CE3A00009EE68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3EF244741B4091BD00EDAFEE /* Build configuration list for PBXNativeTarget "Quick Home" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EF244751B4091BD00EDAFEE /* Debug */,
+				3EF244761B4091BD00EDAFEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

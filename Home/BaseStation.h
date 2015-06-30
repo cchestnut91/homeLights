@@ -7,10 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Light.h"
+#import "URLRequestManager.h"
 
 @interface BaseStation : NSObject
 
++ (BaseStation *)sharedInstance;
+
 - (instancetype)initWithDictionary:(NSDictionary *)json;
+- (void)updateWithCompletion:(completionBlock)completion;
+
+- (BOOL)isReady;
 
 @property (strong, nonatomic) NSDictionary *groups;
 @property (strong, nonatomic) NSDictionary *lights;

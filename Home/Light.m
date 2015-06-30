@@ -9,6 +9,13 @@
 #import "Light.h"
 #import "URLRequestManager.h"
 
+@interface Light ()
+
+@property (strong, nonatomic) NSDate *buffer;
+@property (strong, nonatomic) NSDictionary *queuedState;
+
+@end
+
 @implementation Light
 
 + (NSDictionary *)lightsFromDictionary:(NSDictionary *)dict {
@@ -53,30 +60,27 @@
 }
 
 - (void)setOn:(BOOL)on {
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://10.0.0.95/api/newdeveloper/lights/%@/state", self.key]]];
-    
-    [request setHTTPMethod:@"PUT"];
     NSArray *keys = [NSArray arrayWithObjects: @"on", nil];
     NSArray *objects = [NSArray arrayWithObjects:[NSNumber numberWithBool:on], nil];
     NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
-    NSError *error;
-    NSData *postData = [NSJSONSerialization dataWithJSONObject:jsonDictionary
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&error];
-    
-    [request setHTTPBody:postData];
-    
-    [[[NSURLSession alloc] init] dataTaskWithRequest:request completionHandler:^(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable error) {
-        NSArray* json = [NSJSONSerialization JSONObjectWithData:data
-                                                        options:kNilOptions
-                                                          error:&error];
-        if ([json count] > 0 && [[json objectAtIndex:0] objectForKey:@"success"]){
-            NSLog(@"Not an error, dummy");
+    [[URLRequestManager sharedInstance] performStateUpdateWithLightKey:self.key andState:jsonDictionary withCompletion:^(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable connectionError) {
+        if (data) {
+            NSArray* json = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:kNilOptions
+                                                              error:&connectionError];
+            if ([json count] > 0 && [[json objectAtIndex:0] objectForKey:@"success"]){
+                NSLog(@"Set Light %@ %@", self.key, on ? @"On" : @"Off");
+                [self setIsOn:[NSNumber numberWithBool:on]];
+            } else {
+                NSLog(@"Failed to set Light %@ %@ with error: %@\nAttempted State: %@", self.key, on ? @"On" : @"Off", [connectionError localizedDescription], jsonDictionary);
+                
+                [self queueState:jsonDictionary];
+            }
         } else {
-            NSLog(@"Failed with error: %@", [error localizedDescription]);
-            [self setOn:[NSNumber numberWithBool:!on]];
+            NSLog(@"Failed to set Light %@ %@ with error: %@\nAttempted State: %@", self.key, on ? @"On" : @"Off", [connectionError localizedDescription], jsonDictionary);
+            
+            [self queueState:jsonDictionary];
         }
     }];
 }
@@ -88,34 +92,33 @@
     CGFloat alpha;
     BOOL success = [color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
     if (success){
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://10.0.0.95/api/newdeveloper/lights/%@/state", self.key]]];
-        
-        [request setHTTPMethod:@"PUT"];
         NSArray *keys = [NSArray arrayWithObjects: @"on", @"hue", @"sat", @"bri", nil];
         NSArray *objects = [NSArray arrayWithObjects:[NSNumber numberWithBool:YES], [NSNumber numberWithInt:(int)(hue * 65535)], [NSNumber numberWithInt:(int)(saturation * 255)], [NSNumber numberWithInt:(int)(brightness * 255)], nil];
         NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
         
-        NSError *error;
-        NSData *postData = [NSJSONSerialization dataWithJSONObject:jsonDictionary
-                                                           options:NSJSONWritingPrettyPrinted
-                                                             error:&error];
-        
-        [request setHTTPBody:postData];
-        
-        [[[NSURLSession alloc] init] dataTaskWithRequest:request completionHandler:^(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable connectionError) {
-            
-            NSArray* json = [NSJSONSerialization JSONObjectWithData:data
-                                                            options:kNilOptions
-                                                              error:&connectionError];
-            if ([json count] > 0 && [[json objectAtIndex:0] objectForKey:@"success"]){
-                NSLog(@"Changed Lights");
-                [self setLightColor:color];
-            } else {
-                NSLog(@"Failed with error: %@", [connectionError localizedDescription]);
-            }
-        }];
+        [[URLRequestManager sharedInstance] performStateUpdateWithLightKey:self.key
+                                                                  andState:jsonDictionary
+                                                            withCompletion:^(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable connectionError) {
+                                                                
+                                                                if (data) {
+                                                                    NSArray* json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                                    options:kNilOptions
+                                                                                                                      error:&connectionError];
+                                                                    if ([json count] > 0 && [[json objectAtIndex:0] objectForKey:@"success"]){
+                                                                        NSLog(@"Changed Lights");
+                                                                        [self setLightColor:color];
+                                                                    } else {
+                                                                        NSLog(@"Failed with error: %@", [connectionError localizedDescription]);
+                                                                        
+                                                                        [self queueState:jsonDictionary];
+                                                                    }
+                                                                } else {
+                                                                    NSLog(@"Failed to change color of light %@ with error: %@", self.key, [connectionError localizedDescription]);
+                                                                    
+                                                                    [self queueState:jsonDictionary];
+                                                                }
+                                                            }];
     }
-    NSLog(@"Change");
 }
 
 - (void)changeBrightness:(CGFloat)brightness {
@@ -124,16 +127,61 @@
                            @"bri": [NSNumber numberWithInt:(int)brightness]};
     
     [[URLRequestManager sharedInstance] performStateUpdateWithLightKey:self.key andState:json withCompletion:^(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable connectionError) {
-        NSArray* json = [NSJSONSerialization JSONObjectWithData:data
-                                                        options:kNilOptions
-                                                          error:&connectionError];
-        if ([json count] > 0 && [[json objectAtIndex:0] objectForKey:@"success"]){
-            NSLog(@"Changed Lights");
-            [self setBrightness:[NSNumber numberWithFloat:brightness]];
+        if (data) {
+            NSArray* json = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:kNilOptions
+                                                              error:&connectionError];
+            if ([json count] > 0 && [[json objectAtIndex:0] objectForKey:@"success"]){
+                NSLog(@"Changed Lights");
+                [self setBrightness:[NSNumber numberWithFloat:brightness]];
+            } else {
+                NSLog(@"Failed to change light %@ with error: %@", self.key, [connectionError localizedDescription]);
+            }
         } else {
-            NSLog(@"Failed with error: %@", [connectionError localizedDescription]);
+            NSLog(@"Failed to change light %@ with error: %@", self.key, [connectionError localizedDescription]);
         }
     }];
+}
+
+- (void)changeState:(NSDictionary *)state {
+    [[URLRequestManager sharedInstance] performStateUpdateWithLightKey:self.key
+                                                              andState:state
+                                                        withCompletion:^(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable connectionError) {
+                                                            
+                                                            if (data) {
+                                                                NSArray* json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                                options:kNilOptions
+                                                                                                                  error:&connectionError];
+                                                                if ([json count] > 0 && [[json objectAtIndex:0] objectForKey:@"success"]){
+                                                                    NSLog(@"Changed Light State");
+                                                                } else {
+                                                                    NSLog(@"Failed with error: %@", [connectionError localizedDescription]);
+                                                                    
+                                                                    [self queueState:state];
+                                                                }
+                                                            } else {
+                                                                NSLog(@"Failed to change color of light %@ with error: %@", self.key, [connectionError localizedDescription]);
+                                                                
+                                                                [self queueState:state];
+                                                            }
+                                                        }];
+}
+
+- (void)queueState:(NSDictionary *)queuedState {
+    if (self.queuedState != queuedState) {
+        self.queuedState = queuedState;
+        self.buffer = [NSDate date];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self attemptQueuedState];
+        });
+    }
+}
+
+- (void)attemptQueuedState {
+    if (self.buffer == nil || [[NSDate date] timeIntervalSinceDate:self.buffer] > 0.5) {
+        [self changeState:self.queuedState];
+        NSLog(@"HOLY SHIT");
+    }
 }
 
 @end

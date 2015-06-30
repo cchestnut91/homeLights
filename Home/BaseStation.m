@@ -7,13 +7,63 @@
 //
 
 #import "BaseStation.h"
-#import "Light.h"
+
+static BaseStation *sharedObject;
 
 @implementation BaseStation
+
++ (BaseStation *)sharedInstance {
+    
+    if (sharedObject == nil){
+        sharedObject = [[BaseStation alloc] init];
+        
+        [[URLRequestManager sharedInstance] getAllLightsWithCompletion:^(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable connectionError) {
+            
+            if (data) {
+                NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                                     options:kNilOptions
+                                                                       error:&connectionError];
+                if (json){
+                    [sharedObject populate:json];
+                    NSLog(@"Created BaseStation");
+                } else {
+                    NSLog(@"Failed to ccreate basestation with error: %@", [connectionError localizedDescription]);
+                }
+            } else {
+                NSLog(@"Failed to create basestation with error: %@", [connectionError localizedDescription]);
+            }
+        }];
+    }
+    
+    return sharedObject;
+}
 
 - (instancetype)initWithDictionary:(NSDictionary *)json
 {
     self = [super init];
+    
+    [self populate:json];
+    
+    return self;
+}
+
+- (void)updateWithCompletion:(completionBlock)completion {
+    [[URLRequestManager sharedInstance] getAllLightsWithCompletion:^(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable connectionError) {
+        if (data) {
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                                 options:kNilOptions
+                                                                   error:&connectionError];
+            [self populate:json];
+        } else {
+            NSLog(@"Could not update basestation");
+        }
+        if (completion) {
+            completion(data, response, connectionError);
+        }
+    }];
+}
+
+- (void)populate:(NSDictionary *)json {
     
     self.lights = [Light lightsFromDictionary:json[@"lights"]];
     
@@ -39,7 +89,10 @@
     
     [self setGroups:[NSDictionary dictionaryWithDictionary:groups]];
     
-    return self;
+}
+
+- (BOOL) isReady{
+    return self.groups.allValues.count > 0;
 }
 
 @end
